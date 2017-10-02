@@ -4,14 +4,6 @@ class Yices < Formula
   url "https://github.com/SRI-CSL/yices2/archive/Yices-2.5.4.tar.gz"
   sha256 "f7403328d7d0b3973ffac61fe674d5b8030dd4806c75f3de2cfb8fd81aad1ccd"
 
-  bottle do
-    cellar :any
-    sha256 "e480423bc7fbf94a3ba512a4f672c66057905f9aaee061caf80ae84259ea0555" => :sierra
-    sha256 "da027117a516e23047f3baaf6c9fe2c986434bec34c64ddeb72a11832535db5c" => :el_capitan
-    sha256 "47be959ca49dd851401cc9dcddf29cf7fe0f5f9e59f8639255e405a25e51e1ca" => :yosemite
-    sha256 "d6e40dd842e89e7b83eba751644096dfc27e6e16d2a14c8cc6e3d13c56a75fa8" => :x86_64_linux
-  end
-
   depends_on "autoconf" => :build
   depends_on "gperf"
   depends_on "gmp"
