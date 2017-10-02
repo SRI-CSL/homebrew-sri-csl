@@ -16,14 +16,17 @@ class Yices < Formula
   depends_on "autoconf" => :build
   depends_on "gperf"
   depends_on "gmp"
+  depends_on "libpoly"
+
 
   def install
     system "autoconf"
-    system "./configure", "--disable-debug",
+    system "./configure", "--enable-mcsat",
+                          "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}"
-    system "make"
+    system "make",
     system "make", "install"
   end
 
