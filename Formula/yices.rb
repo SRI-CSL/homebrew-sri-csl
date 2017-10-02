@@ -26,7 +26,7 @@ class Yices < Formula
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}"
-    system "make",
+    system "make"
     system "make", "install"
   end
 
