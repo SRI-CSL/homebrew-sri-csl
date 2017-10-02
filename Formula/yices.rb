@@ -12,7 +12,6 @@ class Yices < Formula
     sha256 "d6e40dd842e89e7b83eba751644096dfc27e6e16d2a14c8cc6e3d13c56a75fa8" => :x86_64_linux
   end
 
-  #depends_on "cmake" => :build
   depends_on "autoconf" => :build
   depends_on "gperf"
   depends_on "gmp"
