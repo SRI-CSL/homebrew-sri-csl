@@ -5,7 +5,7 @@ class Yices < Formula
   sha256 "f7403328d7d0b3973ffac61fe674d5b8030dd4806c75f3de2cfb8fd81aad1ccd"
 
   depends_on "autoconf" => :build
-  depends_on "gperf"
+  depends_on "gperf" => :build
   depends_on "gmp"
   depends_on "libpoly"
 
