@@ -1,6 +1,6 @@
 # SRI's Computer Science Laboratory Hombrew Tap
 
-This is (SRI International's Computer Science Laboratory)'s Homebrew Tap.
+This is the Homebrew Tap of SRI International's Computer Science Laboratory.
 
 ### libpoly
 ```
