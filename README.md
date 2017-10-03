@@ -1,4 +1,4 @@
-# SRI's Computer Science Laboratory Hombrew Tap
+# SRI's Computer Science Laboratory Homebrew Tap
 
 This is the Homebrew Tap of SRI International's Computer Science Laboratory.
 
