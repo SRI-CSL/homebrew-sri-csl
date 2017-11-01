@@ -1,3 +1,4 @@
+#iam 11/1/2017: deprecated use/edit/update the yices2 formula instead
 class Yices < Formula
   desc "The Yices SMT Solver"
   homepage "http://yices.csl.sri.com/"
