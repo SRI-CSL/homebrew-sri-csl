@@ -7,7 +7,7 @@ This is the Homebrew Tap of SRI International's Computer Science Laboratory.
  brew install SRI-CSL/sri-csl/libpoly
 ```
  
- ### yices
+ ### yices2
 ```
  brew install SRI-CSL/sri-csl/yices2
 ```
