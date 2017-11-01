@@ -9,6 +9,6 @@ This is the Homebrew Tap of SRI International's Computer Science Laboratory.
  
  ### yices
 ```
- brew install SRI-CSL/sri-csl/yices
+ brew install SRI-CSL/sri-csl/yices2
 ```
  
