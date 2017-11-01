@@ -10,7 +10,7 @@ class Libpoly < Formula
   def install
     cd "build" do
       system "cmake", "..", "-DLIBPOLY_BUILD_PYTHON_API=OFF", "-DLIBPOLY_BUILD_STATIC=OFF", "-DLIBPOLY_BUILD_STATIC_PIC=OFF", "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_INSTALL_PREFIX=#{prefix}"
-      system "make",
+      system "make"
       system "make", "install"
     end
   end
