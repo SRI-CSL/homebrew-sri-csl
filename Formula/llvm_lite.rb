@@ -15,11 +15,6 @@ class LlvmLite < Formula
       url "https://releases.llvm.org/6.0.0/compiler-rt-6.0.0.src.tar.xz"
       sha256 "d0cc1342cf57e9a8d52f5498da47a3b28d24ac0d39cbc92308781b3ee0cea79a"
     end
-
-    resource "libcxx" do
-      url "https://releases.llvm.org/6.0.0/libcxx-6.0.0.src.tar.xz"
-      sha256 "70931a87bde9d358af6cb7869e7535ec6b015f7e6df64def6d2ecdd954040dd9"
-    end
   end
 
   bottle do
@@ -41,18 +36,17 @@ class LlvmLite < Formula
   end
 
   def install
-    # Apple's libstdc++ is too old to build LLVM
-    ENV.libcxx if ENV.compiler == :clang
+    ##iam # Apple's libstdc++ is too old to build LLVM
+    ##iam ENV.libcxx if ENV.compiler == :clang
 
     (buildpath/"tools/clang").install resource("clang")
     (buildpath/"projects/compiler-rt").install resource("compiler-rt")
-    (buildpath/"projects/libcxx").install resource("libcxx")
     # compiler-rt has some iOS simulator features that require i386 symbols
     # I'm assuming the rest of clang needs support too for 32-bit compilation
     # to work correctly, but if not, perhaps universal binaries could be
     # limited to compiler-rt. llvm makes this somewhat easier because compiler-rt
     # can almost be treated as an entirely different build from llvm.
-    ENV.permit_arch_flags
+    ##iam ENV.permit_arch_flags
 
     args = %w[
       -DLLVM_OPTIMIZED_TABLEGEN=ON
@@ -64,7 +58,7 @@ class LlvmLite < Formula
     args << "-DLLVM_BUILD_EXTERNAL_COMPILER_RT=ON"
     args << "-DLLVM_CREATE_XCODE_TOOLCHAIN=ON"
     args << "-DLLVM_BUILD_LLVM_DYLIB=ON"
-    args << "-DLLVM_ENABLE_LIBCXX=ON"
+    ##iam args << "-DLLVM_ENABLE_LIBCXX=ON"
 
     mktemp do
       system "cmake", "-G", "Unix Makefiles", buildpath, *(std_cmake_args + args)
@@ -78,10 +72,6 @@ class LlvmLite < Formula
     inreplace "#{share}/clang/tools/scan-build/bin/scan-build", "$RealBin/bin/clang", "#{bin}/clang"
     bin.install_symlink share/"clang/tools/scan-build/bin/scan-build", share/"clang/tools/scan-view/bin/scan-view"
     man1.install_symlink share/"clang/tools/scan-build/man/scan-build.1"
-
-    # install llvm python bindings
-    (lib/"python2.7/site-packages").install buildpath/"bindings/python/llvm"
-    (lib/"python2.7/site-packages").install buildpath/"tools/clang/bindings/python/clang"
   end
 
   test do
