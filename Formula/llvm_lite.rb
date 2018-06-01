@@ -58,15 +58,11 @@ class LlvmLite < Formula
       -DLLVM_OPTIMIZED_TABLEGEN=ON
       -DLLVM_INCLUDE_DOCS=OFF
       -DLLVM_INSTALL_UTILS=ON
-      -DWITH_POLLY=ON
-      -DLINK_POLLY_INTO_TOOLS=ON
       -DLLVM_TARGETS_TO_BUILD=all
     ]
     args << "-DLIBOMP_ARCH=x86_64"
-    args << "-DLLVM_BUILD_EXTERNAL_COMPILER_RT=ON" if build.with? "compiler-rt"
-    args << "-DLLVM_CREATE_XCODE_TOOLCHAIN=ON" if build.with? "toolchain"
-    args << "-DPOLLY_ENABLE_GPGPU_CODEGEN=ON" if build.with? "polly-gpgpu"
-
+    args << "-DLLVM_BUILD_EXTERNAL_COMPILER_RT=ON"
+    args << "-DLLVM_CREATE_XCODE_TOOLCHAIN=ON"
     args << "-DLLVM_BUILD_LLVM_DYLIB=ON"
     args << "-DLLVM_ENABLE_LIBCXX=ON"
 
