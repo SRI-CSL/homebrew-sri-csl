@@ -5,15 +5,6 @@ class LlvmLite < Formula
   stable do
     url "https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz"
     sha256 "1ff53c915b4e761ef400b803f07261ade637b0c269d99569f18040f3dcee4408"
-
-    resource "clang" do
-      url "https://releases.llvm.org/6.0.0/cfe-6.0.0.src.tar.xz"
-      sha256 "e07d6dd8d9ef196cfc8e8bb131cbd6a2ed0b1caf1715f9d05b0f0eeaddb6df32"
-    end
-
-    resource "compiler-rt" do
-      url "https://releases.llvm.org/6.0.0/compiler-rt-6.0.0.src.tar.xz"
-      sha256 "d0cc1342cf57e9a8d52f5498da47a3b28d24ac0d39cbc92308781b3ee0cea79a"
     end
   end
 
@@ -36,18 +27,6 @@ class LlvmLite < Formula
   end
 
   def install
-    ##iam # Apple's libstdc++ is too old to build LLVM
-    ##iam ENV.libcxx if ENV.compiler == :clang
-
-    (buildpath/"tools/clang").install resource("clang")
-    (buildpath/"projects/compiler-rt").install resource("compiler-rt")
-    # compiler-rt has some iOS simulator features that require i386 symbols
-    # I'm assuming the rest of clang needs support too for 32-bit compilation
-    # to work correctly, but if not, perhaps universal binaries could be
-    # limited to compiler-rt. llvm makes this somewhat easier because compiler-rt
-    # can almost be treated as an entirely different build from llvm.
-    ##iam ENV.permit_arch_flags
-
     args = %w[
       -DLLVM_OPTIMIZED_TABLEGEN=ON
       -DLLVM_INCLUDE_DOCS=OFF
@@ -55,10 +34,8 @@ class LlvmLite < Formula
       -DLLVM_TARGETS_TO_BUILD=all
     ]
     args << "-DLIBOMP_ARCH=x86_64"
-    args << "-DLLVM_BUILD_EXTERNAL_COMPILER_RT=ON"
     args << "-DLLVM_CREATE_XCODE_TOOLCHAIN=ON"
     args << "-DLLVM_BUILD_LLVM_DYLIB=ON"
-    ##iam args << "-DLLVM_ENABLE_LIBCXX=ON"
 
     mktemp do
       system "cmake", "-G", "Unix Makefiles", buildpath, *(std_cmake_args + args)
@@ -67,49 +44,10 @@ class LlvmLite < Formula
       system "make", "install-xcode-toolchain"
     end
 
-    (share/"clang/tools").install Dir["tools/clang/tools/scan-{build,view}"]
     (share/"cmake").install "cmake/modules"
-    inreplace "#{share}/clang/tools/scan-build/bin/scan-build", "$RealBin/bin/clang", "#{bin}/clang"
-    bin.install_symlink share/"clang/tools/scan-build/bin/scan-build", share/"clang/tools/scan-view/bin/scan-view"
-    man1.install_symlink share/"clang/tools/scan-build/man/scan-build.1"
   end
 
   test do
     assert_equal prefix.to_s, shell_output("#{bin}/llvm-config --prefix").chomp
-    # Testing Command Line Tools
-    if MacOS::CLT.installed?
-      libclangclt = Dir["/Library/Developer/CommandLineTools/usr/lib/clang/#{MacOS::CLT.version.to_i}*"].last { |f| File.directory? f }
-
-      system "#{bin}/clang++", "-v", "-nostdinc",
-              "-I/Library/Developer/CommandLineTools/usr/include/c++/v1",
-              "-I#{libclangclt}/include",
-              "-I/usr/include", # need it because /Library/.../usr/include/c++/v1/iosfwd refers to <wchar.h>, which CLT installs to /usr/include
-              "test.cpp", "-o", "testCLT++"
-      assert_includes MachO::Tools.dylibs("testCLT++"), "/usr/lib/libc++.1.dylib"
-      assert_equal "Hello World!", shell_output("./testCLT++").chomp
-
-      system "#{bin}/clang", "-v", "-nostdinc",
-              "-I/usr/include", # this is where CLT installs stdio.h
-              "test.c", "-o", "testCLT"
-      assert_equal "Hello World!", shell_output("./testCLT").chomp
-    end
-
-    # Testing Xcode
-    if MacOS::Xcode.installed?
-      libclangxc = Dir["#{MacOS::Xcode.toolchain_path}/usr/lib/clang/#{DevelopmentTools.clang_version}*"].last { |f| File.directory? f }
-
-      system "#{bin}/clang++", "-v", "-nostdinc",
-              "-I#{MacOS::Xcode.toolchain_path}/usr/include/c++/v1",
-              "-I#{libclangxc}/include",
-              "-I#{MacOS.sdk_path}/usr/include",
-              "test.cpp", "-o", "testXC++"
-      assert_includes MachO::Tools.dylibs("testXC++"), "/usr/lib/libc++.1.dylib"
-      assert_equal "Hello World!", shell_output("./testXC++").chomp
-
-      system "#{bin}/clang", "-v", "-nostdinc",
-              "-I#{MacOS.sdk_path}/usr/include",
-              "test.c", "-o", "testXC"
-      assert_equal "Hello World!", shell_output("./testXC").chomp
-    end
   end
 end
