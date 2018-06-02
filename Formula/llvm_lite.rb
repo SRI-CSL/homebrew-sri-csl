@@ -5,7 +5,6 @@ class LlvmLite < Formula
   stable do
     url "https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz"
     sha256 "1ff53c915b4e761ef400b803f07261ade637b0c269d99569f18040f3dcee4408"
-    end
   end
 
   bottle do
