@@ -43,7 +43,6 @@ class LlvmLite < Formula
       system "make", "install-xcode-toolchain"
     end
 
-    (share/"cmake").install "cmake/modules"
   end
 
   test do

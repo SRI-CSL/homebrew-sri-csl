@@ -1,14 +1,13 @@
 class Yices2 < Formula
   desc "The Yices SMT Solver"
   homepage "http://yices.csl.sri.com/"
-  url "https://github.com/SRI-CSL/yices2/archive/Yices-2.5.4.tar.gz"
-  sha256 "f7403328d7d0b3973ffac61fe674d5b8030dd4806c75f3de2cfb8fd81aad1ccd"
+  url "https://github.com/SRI-CSL/yices2/archive/Yices-2.6.0.tar.gz"
+  sha256 "22d4db2306c8b2a87ec18208a431750d65f370b9d554d7293c1d4ab4e2c13382"
 
   depends_on "autoconf" => :build
   depends_on "gperf" => :build
   depends_on "gmp"
   depends_on "libpoly"
-
 
   def install
     system "autoconf"
