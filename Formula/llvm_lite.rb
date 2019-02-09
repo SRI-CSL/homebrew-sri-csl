@@ -19,7 +19,7 @@ class LlvmLite < Formula
   depends_on "cmake" => :build
 
   # According to the official llvm readme, GCC 4.7+ is required
-  fails_with :gcc_4_0
+  # fails_with :gcc_4_0
   fails_with :gcc
   ("4.3".."4.6").each do |n|
     fails_with :gcc => n
