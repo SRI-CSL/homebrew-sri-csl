@@ -4,7 +4,6 @@ class LlvmLite < Formula
   url "https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz"
   sha256 "1ff53c915b4e761ef400b803f07261ade637b0c269d99569f18040f3dcee4408"
 
-
   bottle do
     cellar :any
     sha256 "6e8c461f99e8b2725bb9c34d7fc548490f1e74f162f75f3670e0bd759dcbd473" => :high_sierra
