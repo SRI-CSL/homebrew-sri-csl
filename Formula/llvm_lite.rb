@@ -16,13 +16,6 @@ class LlvmLite < Formula
 
   depends_on "cmake" => :build
 
-  # According to the official llvm readme, GCC 4.7+ is required
-  # fails_with :gcc_4_0
-  # fails_with :gcc
-  #  ("4.3".."4.6").each do |n|
-  # fails_with :gcc => n
-  # end
-
   def install
     args = %w[
       -DLLVM_OPTIMIZED_TABLEGEN=ON
@@ -40,11 +33,9 @@ class LlvmLite < Formula
       system "make", "install"
       system "make", "install-xcode-toolchain"
     end
-
   end
 
   test do
     assert_equal prefix.to_s, shell_output("#{bin}/llvm-config --prefix").chomp
   end
-
 end
