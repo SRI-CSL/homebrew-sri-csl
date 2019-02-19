@@ -48,3 +48,4 @@ class LlvmLite < Formula
   test do
     assert_equal prefix.to_s, shell_output("#{bin}/llvm-config --prefix").chomp
   end
+end
