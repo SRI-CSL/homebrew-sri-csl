@@ -23,7 +23,7 @@ class LlvmLite < Formula
   # fails_with :gcc
   #  ("4.3".."4.6").each do |n|
   # fails_with :gcc => n
-  end
+  # end
 
   def install
     args = %w[
