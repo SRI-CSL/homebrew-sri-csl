@@ -1,11 +1,9 @@
 class LlvmLite < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
+  url "https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz"
+  sha256 "1ff53c915b4e761ef400b803f07261ade637b0c269d99569f18040f3dcee4408"
 
-  stable do
-    url "https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz"
-    sha256 "1ff53c915b4e761ef400b803f07261ade637b0c269d99569f18040f3dcee4408"
-  end
 
   bottle do
     cellar :any
@@ -48,3 +46,5 @@ class LlvmLite < Formula
   test do
     assert_equal prefix.to_s, shell_output("#{bin}/llvm-config --prefix").chomp
   end
+
+end
