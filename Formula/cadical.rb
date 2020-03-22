@@ -10,6 +10,7 @@ class Cadical < Formula
     # damn thing doesn't have an install target
     cp "./build/libcadical.a", lib.to_s
     cp "./src/cadical.hpp", include.to_s
+    cp "./src/ccadical.h", include.to_s
   end
 
   test do
