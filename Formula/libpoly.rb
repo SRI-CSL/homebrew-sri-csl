@@ -1,15 +1,20 @@
 class Libpoly < Formula
   desc "C library for manipulating polynomials"
   homepage "https://github.com/SRI-CSL/libpoly"
-  url "https://github.com/SRI-CSL/libpoly/archive/v0.1.7.tar.gz"
-  sha256 "71d08cc1e97219bde8a0af60dd436ce4266dc3f19ff3a2cabc640bd14f4d8f4d"
+  url "https://github.com/SRI-CSL/libpoly/archive/v0.1.8.tar.gz"
+  sha256 "23935b1767ca2da067035c9b219a3637a39f1d9b3a8f93e3ffe8433a0362f5d4"
 
   depends_on "cmake" => :build
   depends_on "gmp"
 
   def install
     cd "build" do
-      system "cmake", "..", "-DLIBPOLY_BUILD_PYTHON_API=OFF", "-DLIBPOLY_BUILD_STATIC=OFF", "-DLIBPOLY_BUILD_STATIC_PIC=OFF", "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_INSTALL_PREFIX=#{prefix}"
+      system "cmake", "..",
+                      "-DLIBPOLY_BUILD_PYTHON_API=OFF",
+                      "-DLIBPOLY_BUILD_STATIC=OFF",
+                      "-DLIBPOLY_BUILD_STATIC_PIC=OFF",
+                      "-DCMAKE_BUILD_TYPE=Release",
+                      "-DCMAKE_INSTALL_PREFIX=#{prefix}"
       system "make"
       system "make", "install"
     end
