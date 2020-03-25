@@ -18,7 +18,7 @@ class Neoyices2 < Formula
     system "autoconf"
     system "./configure", "--enable-mcsat",
                           "CPPFLAGS=-DHAVE_CADICAL",
-                          "LIBS=\"-lcadical -lstdc++ -lm\"",
+                          "LIBS=-lcadical -lstdc++ -lm",
                           "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
