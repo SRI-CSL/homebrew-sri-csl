@@ -8,9 +8,9 @@ class Cadical < Formula
     system "./configure"
     system "make"
     # damn thing doesn't have an install target
-    cp "./build/libcadical.a", lib.to_s
-    cp "./src/cadical.hpp", include.to_s
-    cp "./src/ccadical.h", include.to_s
+    system "cp ./build/libcadical.a #{lib}/"
+    system "cp ./src/cadical.hpp #{include}/"
+    system "cp ./src/ccadical.h #{include}/"
   end
 
   test do
