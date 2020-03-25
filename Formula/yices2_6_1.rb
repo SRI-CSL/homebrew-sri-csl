@@ -1,22 +1,20 @@
-# coding: utf-8
-class Yices2 < Formula
+class Yices2_6_1 < Formula
   desc "The Yices SMT Solver"
-  homepage "https://yices.csl.sri.com/"
-  url "https://github.com/SRI-CSL/yices2/archive/Yices-2.6.2.tar.gz"
-  sha256 "bf3c92a3ddd22c9e5eece1084568ffc37dff4f0bde519fdbd8a1151e8f79bc4b"
+  homepage "http://yices.csl.sri.com/"
+  url "https://github.com/SRI-CSL/yices2/archive/Yices-2.6.1.tar.gz"
+  sha256 "9c2ba83fb780c871bed5e2e344ec2609076aee649bce8caad6c862123675bb93"
 
   depends_on "autoconf" => :build
   depends_on "gperf" => :build
   depends_on "gmp"
   depends_on "libpoly"
-  depends_on "cudd"
-  depends_on "cadical"
 
   def install
     system "autoconf"
     system "./configure", "--enable-mcsat",
-                          "CPPFLAGS=-DHAVE_CADICAL",
-                          "LIBS=-lcadical -lstdc++ -lm",
+                          "--disable-debug",
+                          "--disable-dependency-tracking",
+                          "--disable-silent-rules",
                           "--prefix=#{prefix}"
     system "make"
     system "make", "install"
