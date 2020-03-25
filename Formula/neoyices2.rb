@@ -10,7 +10,7 @@ class Neoyices2 < Formula
   depends_on "autoconf" => :build
   depends_on "gperf" => :build
   depends_on "gmp"
-  depends_on "neolibpoly"
+  depends_on "libpoly"
   depends_on "cudd"
   depends_on "cadical"
 
