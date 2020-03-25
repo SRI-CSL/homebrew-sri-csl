@@ -10,9 +10,9 @@ class Cadical < Formula
     # damn thing doesn't have an install target
     system "mkdir -p #{lib}"
     system "mkdir -p #{include}"
-    system "cp ./build/libcadical.a #{lib}/"
-    system "cp ./src/cadical.hpp #{include}/"
-    system "cp ./src/ccadical.h #{include}/"
+    system "cp ./build/libcadical.a #{lib}/libcadical.a"
+    system "cp ./src/cadical.hpp #{include}/cadical.hpp"
+    system "cp ./src/ccadical.h #{include}/ccadical.h"
   end
 
   test do
