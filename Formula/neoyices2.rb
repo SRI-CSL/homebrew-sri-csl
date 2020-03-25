@@ -1,5 +1,5 @@
 # coding: utf-8
-class NeoYices2 < Formula
+class Neoyices2 < Formula
   desc "The Yices SMT Solver"
   homepage "http://yices.csl.sri.com/"
   homepage "https://yices.csl.sri.com/"
