@@ -1,5 +1,5 @@
 # coding: utf-8
-class Neoyices2 < Formula
+class Yices2 < Formula
   desc "The Yices SMT Solver"
   homepage "https://yices.csl.sri.com/"
   url "https://github.com/SRI-CSL/yices2/archive/Yices-2.6.2.tar.gz"
@@ -16,7 +16,7 @@ class Neoyices2 < Formula
     system "autoconf"
     system "./configure", "--enable-mcsat",
                           "CPPFLAGS=-DHAVE_CADICAL",
-                          "LIBS=\"-lcadical -lstdc++ -lm\"",
+                          "LIBS=-lcadical -lstdc++ -lm",
                           "--prefix=#{prefix}"
     system "make"
     system "make", "install"

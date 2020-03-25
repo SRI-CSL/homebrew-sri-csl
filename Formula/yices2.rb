@@ -1,4 +1,4 @@
-class Yices2 < Formula
+class Yices2_6_1 < Formula
   desc "The Yices SMT Solver"
   homepage "http://yices.csl.sri.com/"
   url "https://github.com/SRI-CSL/yices2/archive/Yices-2.6.1.tar.gz"
