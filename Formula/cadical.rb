@@ -8,6 +8,8 @@ class Cadical < Formula
     system "./configure"
     system "make"
     # damn thing doesn't have an install target
+    system "mkdir -p #{lib}"
+    system "mkdir -p #{include}"
     system "cp ./build/libcadical.a #{lib}/"
     system "cp ./src/cadical.hpp #{include}/"
     system "cp ./src/ccadical.h #{include}/"
