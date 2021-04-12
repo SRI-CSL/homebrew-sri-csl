@@ -1,8 +1,8 @@
 class Libpoly < Formula
   desc "C library for manipulating polynomials"
   homepage "https://github.com/SRI-CSL/libpoly"
-  url "https://github.com/SRI-CSL/libpoly/archive/v0.1.8.tar.gz"
-  sha256 "6b9f59f969d2d49c4576f12411d5fc3d5e786292f58822341252afc69302d529"
+  url "https://github.com/SRI-CSL/libpoly/archive/v0.1.9.tar.gz"
+  sha256 "07cc3b77347b579d1bdb13482103f66cc354c16eb815b3d514de8492a3952ed0"
 
   depends_on "cmake" => :build
   depends_on "gmp"
