@@ -8,9 +8,9 @@ class Yices2 < Formula
   depends_on "autoconf" => :build
   depends_on "gperf" => :build
   depends_on "gmp"
-  depends_on "libpoly"
-  depends_on "cudd"
-  depends_on "cadical"
+  depends_on "sri-csl/sri-csl/libpoly"
+  depends_on "sri-csl/sri-csl/cudd"
+  depends_on "sri-csl/sri-csl/cadical"
 
   def install
     system "autoconf"
