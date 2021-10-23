@@ -21,3 +21,4 @@ brew install SRI-CSL/sri-csl/cadical
  brew install SRI-CSL/sri-csl/yices2
 ```
  
+Maintained by @ianamason.
