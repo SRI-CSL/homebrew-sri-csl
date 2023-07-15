@@ -4,13 +4,14 @@ class Yices2 < Formula
   homepage "https://yices.csl.sri.com/"
   url "https://github.com/SRI-CSL/yices2/archive/Yices-2.6.4.tar.gz"
   sha256 "533a24e020ecb7d64c03a965d598430d193651e2887e6f46924dec5786db78cb"
+  revision 1
 
   depends_on "autoconf" => :build
   depends_on "gperf" => :build
   depends_on "gmp"
   depends_on "sri-csl/sri-csl/libpoly"
   depends_on "sri-csl/sri-csl/cudd"
-  depends_on "sri-csl/sri-csl/cadical"
+  depends_on "cadical"
 
   def install
     system "autoconf"
