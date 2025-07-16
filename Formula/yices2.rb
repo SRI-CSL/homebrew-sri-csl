@@ -2,8 +2,8 @@
 class Yices2 < Formula
   desc "The Yices SMT Solver"
   homepage "https://yices.csl.sri.com/"
-  url "https://github.com/SRI-CSL/yices2/archive/Yices-2.6.5.tar.gz"
-  sha256 "46a93225c1e14ee105e573bb5aae69c8d75b5c65d71e4491fac98203cb0182f3"
+  url "https://github.com/SRI-CSL/yices2/archive/refs/tags/yices-2.7.0.tar.gz"
+  sha256 "584db72abf6643927b2c3ba98ff793f602216b452b8ff2f34a8851d35904804a"
   revision 1
 
   depends_on "autoconf" => :build
